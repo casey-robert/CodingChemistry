@@ -7,17 +7,17 @@ class Position
 public:
 
 
-	bool cartesian;
+	bool cartesian = false;
 
 	//Cartesian
-	double x;
-	double y;
-	double z;
+	double x = 0;
+	double y = 0;
+	double z = 0;
 
 	//Spherical
-	double r;
-	double theta;
-	double phi;
+	double r = 0;
+	double theta = 0;
+	double phi = 0;
 
 
 	Position();

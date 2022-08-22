@@ -3,6 +3,7 @@
 
 Position::Position()
 {
+	//position is the center
 	x = 0;
 	y = 0;
 	z = 0;
@@ -84,11 +85,12 @@ void Position::normalize()
 static double findDistance(Position a, Position b)
 {
 	/*first we conv to cart then calc
-	This is easier, as calculating the distance staying in spherical is simply inserting the spherical-cart conversions into
-	the equation*/
+	This is easier, as calculating the distance staying in spherical is simply inserting the 
+	spherical->cart conversions into the cartesian equation*/
 	
 	bool aOrig = a.cartesian;
 	bool bOrig = b.cartesian;
+
 	a.convToCart();
 	b.convToCart();
 

@@ -8,6 +8,7 @@ using namespace std;
 int main()
 {
 	cout << "Hello CMake." << endl;
-	printf("HI");
+	Atom test = Atom::Atom();
+
 	return 0;
 }

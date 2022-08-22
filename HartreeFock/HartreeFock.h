@@ -4,5 +4,8 @@
 #pragma once
 
 #include <iostream>
+#include "Position.h"
+#include "Atom.h"
+
 
 // TODO: Reference additional headers your program requires here.
