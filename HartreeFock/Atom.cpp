@@ -35,18 +35,30 @@ void Atom::loadASymbolValues()
 				string aSym = tp.substr(0, tp.find(" "));
 				tp = tp.substr(tp.find(" ") + 1, tp.length());
 				int nucleusNum[2];
+				nucleus currNuc;
+
 				//the proton count
-				nucleusNum[0] = stoi(tp.substr(0, tp.find(" ")));
+				currNuc.protons = stoi(tp.substr(0, tp.find(" ")));
 				tp = tp.substr(tp.find(" ") + 1, tp.length());
 				//Neutron count
-				nucleusNum[1] = stoi(tp.substr(0, tp.find(" "))); 
+				currNuc.neutrons = stoi(tp.substr(0, tp.find(" "))); 
 
-				aSymbolMap.insert(aSym, nucleusNum);
-
+				aSymbolMap[aSym] = currNuc;
 				//printf("asym %s, proton: %d, neutron %d \n", aSym.c_str(), pNum, nNum);
 			}
 			
 		}
+	
+		/*
+		A method of iterating over a map
+		for (pair<string, nucleus> element : aSymbolMap)
+		{
+			cout << element.first << std::endl;
+			cout << element.second.protons << std::endl;
+			cout << element.second.neutrons << std::endl;
+		}*/
+
+		
 		aFile.close(); 
 	}
 	else

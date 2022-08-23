@@ -2,6 +2,7 @@
 //
 
 #include "HartreeFock.h"
+#include "Atom.h"
 
 using namespace std;
 

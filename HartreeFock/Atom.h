@@ -21,7 +21,10 @@ static const double convAMUtokg = 1.6605e-27;
 static const double protonCharge = 1.602176634e-19;
 static const double electronCharge = -1.602176634e-19;
 
-
+struct nucleus {
+	int protons;
+	int neutrons;
+};
 
 class Atom
 {
@@ -31,7 +34,7 @@ private:
 	double atomMass;
 	string aSymbol;
 	/*gives the #protons and neutrons given an atomic symbol*/
-	static unordered_map<string, int[2]> aSymbolMap;
+	unordered_map<string, nucleus> aSymbolMap;
 	/*gives the aSymbol given a # of protons*/
 	static unordered_map<int, string> protonMap;
 
