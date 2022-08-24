@@ -4,7 +4,7 @@
 cmake_minimum_required (VERSION 3.8)
 
 # Add source to this project's executable.
-add_executable (HartreeFock "HartreeFock.cpp" "HartreeFock.h" "Atom.cpp" "Atom.h" "Position.h" "Position.cpp")
+add_executable (HartreeFock "HartreeFock.cpp" "HartreeFock.h" "Atom.cpp" "Atom.h" "Position.h" "Position.cpp" "Molecule.cpp" "Molecule.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET HartreeFock PROPERTY CXX_STANDARD 20)
