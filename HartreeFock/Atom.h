@@ -49,6 +49,7 @@ private:
 
 	/*used to load in a text file that connects # Protons and Neutrons to an Atomic Symbol such as H, He, Li, etc*/
 	void loadASymbolValues();
+
 public:
 	/*we make public all of our accessible methods and variable(s)*/
 	Position pos;
@@ -57,16 +58,19 @@ public:
 	the most common isotope is used if the symbol is given */
 	
 	//we give an H and pos 0 when no input given
+	
 	Atom() : Atom(Position::Position(), "H") {}
-
+	
 	/*we count using unsigned short
 	technically an unsigned char could be used, but I didn't want to have possible summation issues down the road*/
 
 	//assumed neutral
+	
 	Atom(Position pos, string aSymbol) : Atom(pos, aSymbol, aSymbolMap[aSymbol].protons) {
 		Atom::loadASymbolValues();
 	}
 	Atom(Position pos, int protons, int neutrons) : Atom(pos, protons, neutrons, protons) {}
+	
 	//let them determine #e-
 	Atom(Position pos, string aSymbol, int electrons);
 	Atom(Position pos, int protons, int neutrons, int electrons);
