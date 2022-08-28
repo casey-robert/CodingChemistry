@@ -3,6 +3,7 @@
 #include <fstream>
 #include <unordered_map>
 
+
 void Atom::loadASymbolValues()
 {
 	fstream aFile;
@@ -34,14 +35,14 @@ void Atom::loadASymbolValues()
 
 
 		aFile.close();
-		/*
-		A method of iterating over a map
+		
+		//A method of iterating over a map
 		for (pair<string, nucleus> element : aSymbolMap)
 		{
 			cout << element.first << std::endl;
 			cout << element.second.protons << std::endl;
 			cout << element.second.neutrons << std::endl;
-		}*/
+		}
 
 
 
@@ -53,24 +54,10 @@ void Atom::loadASymbolValues()
 
 }
 
-
-
-//let them determine #e-
-Atom::Atom(Position pos, string aSymbol, int electrons)
+Atom::Atom(Position pos, int protons, int neutrons, int electrons)
 {
 	this->pos = pos;
-	this->aSymbol = aSymbol;
-	Atom::loadASymbolValues();
-	nuc = Atom::aSymbolMap[aSymbol];
-	numElectrons = electrons;
-	nucleusMass = nuc.protons * protonMass + nuc.neutrons * neutronMass;
-	atomMass = nuc.protons * protonMass + nuc.neutrons * neutronMass + numElectrons * electronMass;
-}
-
-Atom::Atom(Position pos, int protons, int neutrons, int electrons) 
-{
-	this->pos = pos;
-	Atom::loadASymbolValues();
+	//Atom::loadASymbolValues();
 	aSymbol = Atom::protonMap[protons];
 	nucleus tempNuke;
 	tempNuke.protons = protons;
@@ -80,6 +67,31 @@ Atom::Atom(Position pos, int protons, int neutrons, int electrons)
 	nucleusMass = nuc.protons * protonMass + nuc.neutrons * neutronMass;
 	atomMass = nuc.protons * protonMass + nuc.neutrons * neutronMass + numElectrons * electronMass;
 }
+
+
+//let them determine #e-
+Atom::Atom(Position pos, string aSymbol, int electrons)
+{
+	this->pos = pos;
+	this->aSymbol = aSymbol;
+
+
+	nucleus currNuc;
+
+	//the proton count
+	currNuc.protons = 1;
+	currNuc.neutrons = 0;
+
+
+
+	//Atom::loadASymbolValues();
+	nuc = Atom::aSymbolMap[aSymbol];
+	numElectrons = electrons;
+	nucleusMass = nuc.protons * protonMass + nuc.neutrons * neutronMass;
+	atomMass = nuc.protons * protonMass + nuc.neutrons * neutronMass + numElectrons * electronMass;
+}
+
+
 
 
 double Atom::getNucleusMass()

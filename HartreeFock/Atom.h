@@ -45,7 +45,7 @@ private:
 	/*gives the #protons and neutrons given an atomic symbol*/
 	unordered_map<string, nucleus> aSymbolMap;
 	/*gives the aSymbol given a # of protons*/
-	static unordered_map<int, string> protonMap;
+	unordered_map<int, string> protonMap;
 
 	/*used to load in a text file that connects # Protons and Neutrons to an Atomic Symbol such as H, He, Li, etc*/
 	void loadASymbolValues();
@@ -67,7 +67,7 @@ public:
 	//assumed neutral
 	
 	Atom(Position pos, string aSymbol) : Atom(pos, aSymbol, aSymbolMap[aSymbol].protons) {
-		Atom::loadASymbolValues();
+		
 	}
 	Atom(Position pos, int protons, int neutrons) : Atom(pos, protons, neutrons, protons) {}
 	
