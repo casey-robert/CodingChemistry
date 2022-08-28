@@ -59,17 +59,15 @@ public:
 	
 	//we give an H and pos 0 when no input given
 	
-	Atom() : Atom(Position::Position(), "H") {}
+	Atom() : Atom(Position::Position(), 1, 0, 1) {};
 	
 	/*we count using unsigned short
 	technically an unsigned char could be used, but I didn't want to have possible summation issues down the road*/
 
 	//assumed neutral
 	
-	Atom(Position pos, string aSymbol) : Atom(pos, aSymbol, aSymbolMap[aSymbol].protons) {
-		
-	}
-	Atom(Position pos, int protons, int neutrons) : Atom(pos, protons, neutrons, protons) {}
+	Atom(Position pos, string aSymbol) : Atom(pos, aSymbol, aSymbolMap[aSymbol].protons) {};
+	Atom(Position pos, int protons, int neutrons) : Atom(pos, protons, neutrons, protons) {};
 	
 	//let them determine #e-
 	Atom(Position pos, string aSymbol, int electrons);
@@ -86,4 +84,17 @@ public:
 
 
 };
+/*Takes 3 atoms and uses the central atom as an anchor, takes the first and last and creates the established bond lengths and angle
+the first atom is established in the x plane and the third creates the angle in y, z plane is whatever the central atom has
+*/
+void createAtomTriple(Atom* atoms, double lDist, double rDist, double bondAngle);
 
+
+/* change bond length by given delta
+uses array so no return is required
+changes the locations of the second passed atom*/
+void modifybondLength(Atom* atoms, double delta);
+
+/*TODO if wanted/helpful
+ Takes 4 atoms and modifies the dihedral angle centered on the */
+//static Atom* dihedralAngle();

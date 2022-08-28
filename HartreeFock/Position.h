@@ -24,11 +24,11 @@ public:
 
 	Position(double v1, double v2, double v3, bool cartesian);
 
-	void convToCart();
+	/*updates cartesian if spher have been changed*/
+	void updateCart();
 
-
-	void convToSpher();
-
+	/*updates spher if cart has been changed*/
+	void updateSpher();
 
 	double length();
 
@@ -36,7 +36,7 @@ public:
 
 };
 
-static double findDistance(Position a, Position b);
+double findDistance(Position a, Position b);
 
 
 

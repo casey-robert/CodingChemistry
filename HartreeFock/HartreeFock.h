@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Position.h"
 #include "Atom.h"
+#include "Molecule.h"
 
 
 // TODO: Reference additional headers your program requires here.

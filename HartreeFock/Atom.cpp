@@ -2,7 +2,9 @@
 #include <iostream>
 #include <fstream>
 #include <unordered_map>
+#include "Position.h"
 
+#define PI 3.14159
 
 void Atom::loadASymbolValues()
 {
@@ -117,8 +119,65 @@ int Atom::getNumElectrons()
 }
 
 
+void createAtomTriple(Atom* atoms, double lDist, double rDist, double bondAngle)
+{
+	double centralx = atoms[1].pos.x;
+	double centraly = atoms[1].pos.y;
+	double centralz = atoms[1].pos.z;
+
+	//define the left atom's pos
+	atoms[0].pos.x = centralx - lDist;
+	atoms[0].pos.y = centraly;
+	atoms[0].pos.z = centralz;
+
+	
+	
+	//set to <=180.0
+	bondAngle = 180 - fmod(bondAngle, 180.0);//bondAngle - ((int)bondAngle / 180) * 180.0;
+	//cout << bondAngle << endl;
+	// converting degrees to radians
+	bondAngle = bondAngle * PI / 180.0;
+
+	//define right atom's pos
+	atoms[2].pos.x = centralx + rDist * sin(bondAngle);
+	atoms[2].pos.y = centraly + rDist * cos(bondAngle);
+	atoms[2].pos.z = centralz;
+
+	//update the spher for changed pos
+	atoms[0].pos.updateSpher();
+	atoms[2].pos.updateSpher();
+	
+	
 
 
+
+
+}
+
+void modifybondLength(Atom* atoms, double delta)
+{
+	//we find the x y and z direction of the bond between the 2;
+	double xdir = atoms[1].pos.x - atoms[0].pos.x;
+	double ydir = atoms[1].pos.y - atoms[0].pos.y;
+	double zdir = atoms[1].pos.z - atoms[0].pos.z;
+
+	double bondDist = findDistance(atoms[0].pos, atoms[1].pos);
+	double newBondDist = bondDist + delta;
+	
+	double modFactor = newBondDist / bondDist;//sqrt(newBondDist / bondDist);
+
+	atoms[1].pos.x = atoms[0].pos.x + xdir * modFactor;
+	atoms[1].pos.y = atoms[0].pos.y + ydir * modFactor;
+	atoms[1].pos.z = atoms[0].pos.z + zdir * modFactor;
+
+	//update the spherical to match
+	atoms[1].pos.updateSpher();
+	atoms[0].pos.updateSpher();
+
+	//cout << newBondDist << endl;
+	//cout << findDistance(atoms[0].pos, atoms[1].pos) << endl;
+
+}
 
 
 
