@@ -22,18 +22,18 @@ int main()
 	
 	Molecule h2O = Molecule(list, 3);
 
-	double energy = h2O.calcNucNucRepEnergyht();
+	double energy = h2O.calcNucNucRepEnergy("ht");
 
 	cout << energy << endl;
 
-	cout << h2O.calcNucNucRepEnergyeV() << endl;
+	cout << h2O.calcNucNucRepEnergy("eV") << endl;
 
 
-	cout << h2O.calcNucNucRepEnergyJ() << endl;
+	cout << h2O.calcNucNucRepEnergy() << endl;
 
-	cout << h2O.calcNucNucRepEnergykJpMol() << endl;
+	cout << h2O.calcNucNucRepEnergy("kJ/mol") << endl;
 
-	cout << h2O.calcNucNucRepEnergyht() << endl;
+	cout << h2O.calcNucNucRepEnergy("ht") << endl;
 	return 0;
 }
 

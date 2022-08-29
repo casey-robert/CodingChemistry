@@ -4,7 +4,7 @@
 
 #define N 6.0221408e23
 #define KE  8.98755e9
-
+#define KJPMOLTOHT 3.8088e-4
 
 
 
@@ -25,12 +25,12 @@ public:
 	
 
 	Molecule(Atom* atoms, int length);
-	//returns value in joules
-	double calcNucNucRepEnergyht();
-	double calcNucNucRepEnergykJpMol();
-	double calcNucNucRepEnergyJ();
-	double calcNucNucRepEnergyeV();
 
-
+	
+	/*Default returns NucNucRepEnergy in J for given Mol*/
+	double calcNucNucRepEnergy();
+	/* returns NucNucRepEnergy in J, ht, eV, or kJ/mol
+		returns in J for unrecognized units*/
+	double calcNucNucRepEnergy(string units);
 
 };
