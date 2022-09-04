@@ -38,5 +38,7 @@ public:
 
 double findDistance(Position a, Position b);
 
+double findxyDist(Position a, Position b);
+
 
 

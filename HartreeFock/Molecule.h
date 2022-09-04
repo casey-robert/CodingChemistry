@@ -7,12 +7,13 @@
 #define KJPMOLTOHT 3.8088e-4
 
 
-
+/*
+* possibility for specification of where bonds occur
 struct bondingAtom {
 	Atom atom;
 	int numBonds;
-	Atom BondedList[];
-};
+	Atom *BondedList;
+};*/
 
 
 

@@ -180,6 +180,63 @@ void modifybondLength(Atom* atoms, double delta)
 }
 
 
+void modifybondAngle(Atom* atoms, double delta)
+{
+	// we find the x y and z direction of the bond between the 0 and 1;
+	double xdir01 = atoms[1].pos.x - atoms[0].pos.x;
+	double ydir01 = atoms[1].pos.y - atoms[0].pos.y;
+
+
+	// we find the x y and z direction of the bond between the 1 and 2;
+	double xdir12 = atoms[2].pos.x - atoms[1].pos.x;
+	double ydir12 = atoms[2].pos.y - atoms[1].pos.y;
+
+	//make a line for a0 and a1
+	double m = ydir01 / xdir01;
+	double b = atoms[0].pos.y - m * atoms[0].pos.x;
+
+	double dist12 = findxyDist(atoms[1].pos, atoms[2].pos);
+
+	//double oldAngle = acos((side01 * side01 + side12 * side12 - side02 * side02) / (2 * side01 * side02));
+	double deltaRad = delta * PI / 180.0;
+	double oldAngle = atan(ydir12 / xdir12);
+	cout << "OLD ANGLE: " << oldAngle * 180.0 / PI << endl;
+	double newAngle = oldAngle;
+
+	//add or subtract the delta based on if the atom is above or below the 01 atom line
+	(atoms[2].pos.y > (m * atoms[2].pos.x + b)) ? (newAngle += deltaRad) : (newAngle -= deltaRad);
+	
+	cout << "NEW ANGLE: " << newAngle * 180.0 / PI << endl;
+
+	cout << "SIN: " << sin(oldAngle) << endl;
+	cout << "Cos: " << cos(oldAngle) << endl;
+	double newdy = dist12 * sin(newAngle);
+	double newdx = dist12 * cos(newAngle);
+
+	atoms[2].pos.x = atoms[1].pos.x + newdx;
+	atoms[2].pos.y = atoms[1].pos.y + newdy;
+
+	//update the spherical to match
+	//atoms[1].pos.updateSpher();
+	//atoms[0].pos.updateSpher();
+
+	//cout << newBondDist << endl;
+	//cout << findDistance(atoms[0].pos, atoms[1].pos) << endl;
+}
+
+
+double bondAngle(Atom* atoms)
+{
+	double side01 = findDistance(atoms[0].pos, atoms[1].pos);
+	double side12 = findDistance(atoms[2].pos, atoms[1].pos);
+	double side02 = findDistance(atoms[2].pos, atoms[0].pos);
+	//give the inner angle
+	 
+	return 180.0 * acos((side01 * side01 + side12 * side12 - side02 * side02) / (2 * side01 * side12)) / PI;
+	//double oldAngle = acos((side01 * side01 + side12 * side12 - side02 * side02) / (2 * side01 * side02));
+}
+
+
 
 
 

@@ -95,6 +95,20 @@ uses array so no return is required
 changes the locations of the second passed atom*/
 void modifybondLength(Atom* atoms, double delta);
 
+
+
+/*
+Modify Bond angle
+ modify the angle between 3 given atoms
+ atom 0 and 1 remain identical, angle shifted through atom #2
+*/
+void modifybondAngle(Atom* atoms, double delta);
+
+
+/*
+* return the inner angle of 3 atoms in the xy plane
+*/
+double bondAngle(Atom* atoms);
 /*TODO if wanted/helpful
  Takes 4 atoms and modifies the dihedral angle centered on the */
 //static Atom* dihedralAngle();

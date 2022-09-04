@@ -79,8 +79,15 @@ double findDistance(Position a, Position b)
 	//in case the cartesian side needs to be updated
 	//a.updateCart();
 	//b.updateCart();
-	double d = sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + (a.z - b.z) * (a.z - b.z));
+	return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + (a.z - b.z) * (a.z - b.z));
 
-	return d;
+	
+
+}
+
+double findxyDist(Position a, Position b)
+{
+	return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+
 
 }

@@ -17,9 +17,28 @@ int main()
 		Atom::Atom(Position::Position(3, -3, 8, true), 1, 0, 1) };
 
 
+	cout << "ANGLE: " << bondAngle(list) << endl;
+	cout << "X: " << list[2].pos.x << endl;
+	cout << "Y: " << list[2].pos.y << endl;
+	cout << "Z: " << list[2].pos.z << endl;
+	cout << "Bond Dist: " << findxyDist(list[2].pos, list[1].pos) << endl;
+
+	modifybondAngle(list, 30);
+
+	cout << "ANGLE: " << bondAngle(list) << endl;
+	cout << "X: " << list[2].pos.x << endl;
+	cout << "Y: " << list[2].pos.y << endl;
+	cout << "Z: " << list[2].pos.z << endl;
+	cout << "Bond Dist: " << findxyDist(list[2].pos, list[1].pos) << endl;
+
+
 	createAtomTriple(list, 9.57e-11, 9.57e-11, 104.5);
 	
 	
+
+
+
+
 	Molecule h2O = Molecule(list, 3);
 
 	double energy = h2O.calcNucNucRepEnergy("ht");
